@@ -4,20 +4,20 @@
 #include <sstream>
 #include <string>
 
-#define BACKWARD_HAS_DW 1  // Enable usage of libdw from the elfutils for stack trace annotation.
-#include "third_party/backward-cpp/backward.hpp"
+//#define BACKWARD_HAS_DW 1  // Enable usage of libdw from the elfutils for stack trace annotation.
+//#include "third_party/backward-cpp/backward.hpp"
 
 namespace {
 /*
   Prints the current stack trace to the given stream.
 */
 void PrintStackTrace(std::ostream* s) {
-  const size_t max_stack_depth = 64;
-
-  backward::StackTrace st;
-  st.load_here(max_stack_depth);
-  backward::Printer p;
-  p.print(st, *s);
+//  const size_t max_stack_depth = 64;
+  *s << "Stack trace: unavailable UwU";
+//  backward::StackTrace st;
+//  st.load_here(max_stack_depth);
+//  backward::Printer p;
+//  p.print(st, *s);
 }
 }  // namespace
 

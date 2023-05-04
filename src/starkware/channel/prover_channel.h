@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include <sstream>
 
 #include "third_party/gsl/gsl-lite.hpp"
 
@@ -104,7 +105,7 @@ class ProverChannel : public Channel {
   }
 
   /*
-    Finds a nonce (8 bytes) for which blake(blake(magic || prng_seed || work_bits) || nonce)
+    Finds a nonce (8 bytes) for which blake2(blake2(magic || prng_seed || work_bits) || nonce)
     has security_bits leading zero bits. Then, appends the nonce to the proof.
     This is done using ProofOfWork.
   */

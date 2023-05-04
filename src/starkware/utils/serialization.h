@@ -1,7 +1,7 @@
 #ifndef STARKWARE_UTILS_SERIALIZATION_H_
 #define STARKWARE_UTILS_SERIALIZATION_H_
 
-#include <endian.h>
+#include <machine/endian.h>
 #include <algorithm>
 #include <cstddef>
 
@@ -9,7 +9,13 @@
 
 #include "starkware/error_handling/error_handling.h"
 
+#include <libkern/OSByteOrder.h>
+
+#define be64toh(x) OSSwapBigToHostInt64(x)
+#define htobe64(x) OSSwapHostToBigInt64(x)
+
 namespace starkware {
+
 
 inline void Serialize(uint64_t val, gsl::span<std::byte> span_out) {
   ASSERT_RELEASE(

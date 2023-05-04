@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include <sstream>
 
 #include "third_party/gsl/gsl-lite.hpp"
 

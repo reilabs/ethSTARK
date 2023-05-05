@@ -89,7 +89,7 @@ class CompositionOracleProver {
   MaybeOwnedPtr<const Air> air_;
   MaybeOwnedPtr<const CompositionPolynomial> composition_polynomial_;
   ProverChannel* const channel_;
-  std::vector<size_t> trace_widths_;
+  std::vector<uint64_t> trace_widths_;
   std::vector<std::vector<std::pair<int64_t, uint64_t>>> splitted_masks_;
 };
 
@@ -139,7 +139,7 @@ class CompositionOracleVerifier {
   MaybeOwnedPtr<const Air> air_;
   MaybeOwnedPtr<const CompositionPolynomial> composition_polynomial_;
   VerifierChannel* const channel_;
-  std::vector<size_t> trace_widths_;
+  std::vector<uint64_t> trace_widths_;
   std::vector<std::vector<std::pair<int64_t, uint64_t>>> splitted_masks_;
 };
 

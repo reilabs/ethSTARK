@@ -9,7 +9,7 @@ namespace starkware {
 JsonValue GetProverConfigJson(size_t constraint_polynomial_task_size) {
   JsonBuilder output;
 
-  output["constraint_polynomial_task_size"] = constraint_polynomial_task_size;
+  output["constraint_polynomial_task_size"] = (uint64_t) constraint_polynomial_task_size;
 
   return output.Build();
 }
@@ -24,7 +24,7 @@ JsonValue GetParametersJson(
 
   uint64_t spare_degree = log_degree_bound;
   for (const size_t fri_step : fri_steps) {
-    params["stark"]["fri"]["fri_step_list"].Append(fri_step);
+    params["stark"]["fri"]["fri_step_list"].Append((uint64_t) fri_step);
     spare_degree -= fri_step;
   }
 

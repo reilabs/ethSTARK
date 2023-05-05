@@ -151,7 +151,7 @@ TEST_F(CachedLdeManagerTest, EvalAtPoints_Cache) {
 
   // Evaluate points.
   std::vector<gsl::span<BaseFieldElement>> outputs_spans = {outputs.begin(), outputs.end()};
-  cached_lde_manager_.EvalAtPoints(coset_point_indices, outputs_spans);
+  cached_lde_manager_.EvalAtPoints(gsl::as_span(coset_point_indices), outputs_spans);
 
   // Compare result.
   TestEvalAtPointsResult(coset_point_indices, outputs);

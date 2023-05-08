@@ -38,3 +38,22 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${CC_OPTIMIZE}")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(src)
+
+install(TARGETS committed_trace_binding
+                task_manager
+                profiling
+                packaging_commitment_scheme
+                to_from_string
+                channel
+                prng
+                blake2s
+                proof_of_work
+                merkle_commitment_scheme
+                merkle_tree
+                packer_hasher
+                fields
+                error_handling
+                table
+                domains)
+
+set(CMAKE_INSTALL_PREFIX ./target)

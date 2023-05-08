@@ -1,6 +1,8 @@
 add_library(committed_trace INTERFACE)
 target_link_libraries(committed_trace INTERFACE cached_lde_manager table merkle_commitment_scheme packaging_commitment_scheme)
 
+add_library(committed_trace_binding committed_trace_binding.cc)
+
 add_library(composition_oracle composition_oracle.cc)
 target_link_libraries(composition_oracle committed_trace channel)
 

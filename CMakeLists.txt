@@ -26,6 +26,9 @@ if (NOT DEFINED CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug)
 endif()
 
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -arch arm64")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -arch arm64")
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Wextra -Wno-mismatched-tags -fno-strict-aliasing")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 

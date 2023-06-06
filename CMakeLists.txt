@@ -6,8 +6,8 @@ if (NOT DEFINED CMAKE_C_COMPILER)
   set(CMAKE_C_COMPILER /usr/bin/clang)
 endif()
 
-include_directories(/usr/local/include)
-link_directories(/usr/local/lib)
+include_directories(./vendor/include)
+link_directories(./vendor/lib)
 
 project(StarkStack VERSION 0.1.0 LANGUAGES CXX C)
 include(CTest)

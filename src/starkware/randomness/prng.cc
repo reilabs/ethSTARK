@@ -39,7 +39,7 @@ Prng::Prng() {
       FLAGS_override_random_seed.empty() ? SeedFromSystemTime()
                                          : SeedPrintoutToBytes(FLAGS_override_random_seed);
   const std::string seed_string = BytesToHexString(seed_bytes);
-  LOG(INFO) << "Seeding PRNG with " << seed_string << ".";
+  // LOG(INFO) << "Seeding PRNG with " << seed_string << ".";
   ASSERT_RELEASE(
       SeedPrintoutToBytes(seed_string) == seed_bytes, "Randomness not reproducible from printout.");
   hash_chain_.InitHashChain(seed_bytes);

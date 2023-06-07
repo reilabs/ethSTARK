@@ -9,14 +9,35 @@
 #include "starkware/stark/utils.h"
 #include <iostream>
 
-extern "C" {
-void *doTheDooblyDoop(size_t trace_length, size_t blowup) {
-    std::cout << "doTheDooblyDoop(" << trace_length << ", " << blowup << ")" << std::endl;
-    const starkware::EvaluationDomain evaluation_domain(trace_length, blowup);
-    starkware::ProverChannel prover_channel;
-    starkware::TableProverFactory<starkware::BaseFieldElement> table_prover_factory =
-            starkware::GetTableProverFactory<starkware::BaseFieldElement>(&prover_channel);
-    return new starkware::CommittedTraceProver<starkware::BaseFieldElement>(UseOwned(&evaluation_domain), 1, table_prover_factory);
-}
+using namespace starkware;
 
+extern "C" {
+void *runBenchmark(size_t trace_length, size_t blowup) {
+    //std::cout << "runBenchmark(" << trace_length << ", " << blowup << ")" << std::endl;
+    
+    // Config
+    bool eval_in_natural_order = true;
+    size_t n_columns = 1;
+
+    // Prover setup
+    const EvaluationDomain evaluation_domain(trace_length, blowup);
+    Prng prng;
+    ProverChannel prover_channel(ProverChannel(prng.Clone()));
+
+    TableProverFactory<BaseFieldElement> table_prover_factory =
+        GetTableProverFactory<BaseFieldElement>(&prover_channel);
+
+    // Random trace
+    std::vector<std::vector<BaseFieldElement>> trace_columns;
+    trace_columns.reserve(n_columns);
+    for (size_t i = 0; i < n_columns; ++i) {
+        trace_columns.emplace_back(prng.RandomFieldElementVector<BaseFieldElement>(trace_length));
+    }
+
+    // Commit
+    CommittedTraceProver<BaseFieldElement> prover(UseOwned(&evaluation_domain), n_columns, table_prover_factory);
+    prover.Commit(
+        TraceBase<BaseFieldElement>(std::move(trace_columns)), evaluation_domain.TraceDomain(),
+        eval_in_natural_order);
+}
 }

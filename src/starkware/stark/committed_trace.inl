@@ -55,6 +55,8 @@ template <typename FieldElementT>
 void CommittedTraceProver<FieldElementT>::Commit(
     TraceBase<FieldElementT>&& trace, const Coset& trace_domain, bool eval_in_natural_order) {
   ASSERT_RELEASE(trace.Width() == n_columns_, "Wrong number of columns.");
+  std::cout << "Trace Length" << trace.Length() << "\n";
+  std::cout << "Domain Length" << evaluation_domain_->TraceSize() << "\n";
   ASSERT_RELEASE(trace.Length() == evaluation_domain_->TraceSize(), "Wrong trace length.");
 
   // Create an LDE manager and add column evaluations.

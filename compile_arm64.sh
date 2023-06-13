@@ -8,6 +8,6 @@ set -e
 rm -rf build
 mkdir build
 cd build
-cmake .. -DCMAKE_TOOLCHAIN_FILE=../ios.toolchain.cmake -DPLATFORM=OS64 -DDEPLOYMENT_TARGET=13.0
+cmake .. -DCMAKE_TOOLCHAIN_FILE=../ios.toolchain.cmake -DPLATFORM=OS64 -DDEPLOYMENT_TARGET=13.0 # -DCMAKE_BUILD_TYPE=Release
 make -j
 make install
